@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author    Louis Bataillard <info@mobweb.ch>
+ * @package    MobWeb_Voucher
+ * @copyright    Copyright (c) MobWeb GmbH (https://mobweb.ch)
+ */
+-->
+<config>
+    <modules>
+        <MobWeb_Voucher>
+            <version>1.0.0</version>
+        </MobWeb_Voucher>
+    </modules>
+    <global>
+        <helpers>
+            <mobweb_voucher>
+                <class>MobWeb_Voucher_Helper</class>
+            </mobweb_voucher>
+        </helpers>
+        <models>
+            <mobweb_voucher>
+                <class>MobWeb_Voucher_Model</class>
+                <resourceModel>mobweb_voucher_mysql4</resourceModel>
+            </mobweb_voucher>
+        </models>
+        <resources>
+            <mobweb_voucher_setup>
+                <setup>
+                    <module>MobWeb_Voucher</module>
+                    <class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </mobweb_voucher_setup>
+        </resources>
+    </global>
+    <frontend>
+        <events>
+            <checkout_cart_product_add_after>
+                <observers>
+                    <mobweb_voucher_checkout_cart_product_add_after>
+                        <class>mobweb_voucher/observer</class>
+                        <method>checkoutCartProductAddAfter</method>
+                    </mobweb_voucher_checkout_cart_product_add_after>
+                </observers>
+            </checkout_cart_product_add_after>
+        </events>
+        <translate>
+            <modules>
+                <mobweb_voucher>
+                    <files>
+                        <default>MobWeb_Voucher.csv</default>
+                    </files>
+                </mobweb_voucher>
+            </modules>
+        </translate>
+    </frontend>
+</config>
